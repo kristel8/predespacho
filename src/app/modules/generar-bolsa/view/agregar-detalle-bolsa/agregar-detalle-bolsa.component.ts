@@ -18,6 +18,7 @@ import { IPartirRequest } from 'src/app/shared/interfaces/partir-producto.interf
 export class AgregarDetalleBolsaComponent implements OnInit, AfterViewInit {
   @ViewChild('formAgregarDetalle') formAgregarDetalle!: AgregarDetalleFormComponent;
   @ViewChild('partirModal') partirModal!: PartirModalComponent;
+  preDespachoId: number;
 
   constructor(
     private generarBolsaService: GenerarBolsaService,
@@ -31,6 +32,7 @@ export class AgregarDetalleBolsaComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     const cantidad = this.storage.getItem(STORAGE.añadidos);
     this.storage.setItem(STORAGE.añadidos, cantidad);
+    this.preDespachoId = this.storage.getItem(STORAGE.detallePreDespachoId);
   }
 
   guardar(): void {
@@ -75,12 +77,12 @@ export class AgregarDetalleBolsaComponent implements OnInit, AfterViewInit {
   }
 
   aceptarPartir(): void {
-    const { codBarra, nuevaCantidad, impresora } = this.partirModal.form.getRawValue();
+    const { codBarra, nuevaCantidad, impresora, cantPaquetes } = this.partirModal.form.getRawValue();
 
     const request: IPartirRequest = {
       Id: +codBarra,
       cantidad_del_NUEVO_paquete: nuevaCantidad,
-      Nro_Paquetes: 1,
+      Nro_Paquetes: cantPaquetes,
       Impresora: impresora.rutaUbicacionImpresora,
     }
     this.generarBolsaService.postPartirProducto(request).subscribe({

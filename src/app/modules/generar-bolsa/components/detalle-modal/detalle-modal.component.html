@@ -1,8 +1,17 @@
 <p-dialog header="Detalles del producto" [(visible)]="isOpenModal" [modal]="true" [style]="{ width: 'min-content' }"
   [draggable]="false" [resizable]="false" (onHide)="closeModal()" [dismissableMask]="true">
   <section class="container-modal">
-    <p-table [columns]="cols" [value]="detalles" [rows]="10" [loading]="loading" [scrollable]="true"
+    <p-table #table3 [columns]="cols" [value]="detalles" [rows]="10" [loading]="loading" [scrollable]="true"
       scrollHeight="300px" responsiveLayout="scroll">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="table3.filterGlobal($event.target.value, 'contains')"
+              placeholder="Buscar" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th *ngFor="let col of columns">

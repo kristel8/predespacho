@@ -28,6 +28,17 @@ export class MensajesSwalService {
         });
     }
 
+    mensajeGrabadoMensajeSatisfactorio(mensaje: string) {
+      Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Información',
+          text: mensaje,
+          showConfirmButton: false,
+          timer: 2000
+      });
+  }
+
     mensajeImportacionSatisfactorio() {
         Swal.fire({
             position: 'center',

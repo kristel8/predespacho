@@ -9,7 +9,7 @@ import { Validators } from '@angular/forms';
 import { IPreDespachoRequest } from 'src/app/shared/interfaces/pre-despacho.interface';
 import { Opcion } from 'src/app/global/opcion';
 import { MensajesSwalService } from 'src/app/shared/services/mensajes-swal.service';
-import { STORAGE, UNDEFINED_VALUE } from 'src/app/global';
+import { MensajesGlobales, STORAGE, UNDEFINED_VALUE } from 'src/app/global';
 import { LocaleUtil } from 'src/app/global/locale.utils';
 import { Router } from '@angular/router';
 import { IDetallePreDespachoRequest } from 'src/app/shared/interfaces/detalle-pre-despacho.interface';
@@ -150,7 +150,7 @@ export class NuevaBolsaComponent implements OnInit, AfterViewInit {
     this.generarBolsaService.postCrearBolsa(request).pipe(
       switchMap((response) => {
         if (response) {
-          this.mensajeSwal.mensajeGrabadoSatisfactorio();
+          this.mensajeSwal.mensajeGrabadoMensajeSatisfactorio(`${MensajesGlobales._MENSAJE_EXITOSO} ${response}`);
           this.formNuevaBolsa.isGuardado = true;
           this.formNuevaBolsa.form.disable();
 
@@ -183,12 +183,12 @@ export class NuevaBolsaComponent implements OnInit, AfterViewInit {
     this.tableNuevaBolsa.showID = true;
     this.tableNuevaBolsa.preDespachoId = this.storage.getItem(STORAGE.detallePreDespachoId);
     this.tableNuevaBolsa.cols = [
-      { field: 'cod_item', header: 'Codigo' },
+      { field: 'cod_item', header: 'Código' },
       { field: 'can_Requerida', header: 'Requerido' },
       { field: 'can_Entregada', header: 'Atendido' },
-      { field: 'can_en_Paquetes', header: 'Stock' },
+      { field: 'can_en_Paquetes', header: 'En Paquete' },
       { field: 'sector', header: 'Sector' },
-      { field: 'des_Item', header: 'Descripcion' },
+      { field: 'des_Item', header: 'Descripción' },
     ];
   }
 
@@ -229,7 +229,6 @@ export class NuevaBolsaComponent implements OnInit, AfterViewInit {
     if (this.router.url.includes('nuevo')) {
       this.router.navigateByUrl('generar-bolsa/agregarNuevoDetalle');
     } else {
-
       this.router.navigateByUrl('generar-bolsa/agregarDetalle');
     }
   }
@@ -297,7 +296,6 @@ export class NuevaBolsaComponent implements OnInit, AfterViewInit {
     this.partirModal.isOpenModal = true;
 
     this.partirModal.form.reset();
-    this.partirModal.cantPaquetes.setValue(1);
   }
 
   aceptarPartir(): void {

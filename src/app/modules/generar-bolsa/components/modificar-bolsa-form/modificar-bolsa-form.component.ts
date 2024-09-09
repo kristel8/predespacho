@@ -19,6 +19,7 @@ export class ModificarBolsaFormComponent implements OnInit {
 
   almacenSelect: any;
   data: any;
+  titulo: string;
 
   requerimientos: any[] = [];
   almacenes: IAlmacenResponse[] = [];

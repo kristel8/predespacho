@@ -1,8 +1,17 @@
 <section *ngIf="!isScreenMobile && isMostrarTabla">
   <h3>Detalle<i class="pi pi-file"></i><span class="pre-despacho" *ngIf="showID">{{preDespachoId}}</span></h3>
-  <p-table [columns]="cols" [value]="productos" [(selection)]="seleccionado" [rows]="10" [showCurrentPageReport]="true"
+  <p-table #table2 [columns]="cols" [value]="productos" [(selection)]="seleccionado" [rows]="10" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} elementos">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="table2.filterGlobal($event.target.value, 'contains')"
+            placeholder="Buscar" />
+        </span>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th></th>
@@ -39,13 +48,13 @@
 
 <section *ngIf="isScreenMobile && isMostrarTabla">
   <h3>Detalle <i class="pi pi-file"></i> <span class="pre-despacho" *ngIf="showID">{{preDespachoId}}</span></h3>
-  <p-dataView #dv [value]="productos" [paginator]="false"
+  <p-dataView #dv2 [value]="productos" [paginator]="false"
     filterBy="cod_item,can_Requerida,can_Entregada,can_en_Paquetes,des_Item" scrollHeight="calc(60vh - 200px)"
     [rows]="9" layout="grid" [emptyMessage]="mesajeNotItems">
     <ng-template pTemplate="header">
       <span class="p-input-icon-left mb-2 md:mb-0">
         <i class="pi pi-search"></i>
-        <input type="search" pInputText placeholder="Buscar" (input)="dv.filter($event.target.value)">
+        <input type="search" pInputText placeholder="Buscar" (input)="dv2.filter($event.target.value)">
       </span>
     </ng-template>
     <ng-template let-item pTemplate="gridItem">

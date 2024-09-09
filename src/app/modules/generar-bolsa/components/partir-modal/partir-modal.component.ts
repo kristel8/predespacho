@@ -16,7 +16,7 @@ export class PartirModalComponent implements OnInit {
   form = this.fb.group({
     codBarra: [null, Validators.required],
     nuevaCantidad: [null, Validators.required],
-    cantPaquetes: [null, Validators.required],
+    cantPaquetes: [1, Validators.required],
     impresora: [null, Validators.required],
   });
 
@@ -52,6 +52,8 @@ export class PartirModalComponent implements OnInit {
   }
 
   closeModal() {
+    console.log(this.form.getRawValue());
+
     this.isOpenModal = false;
   }
 }

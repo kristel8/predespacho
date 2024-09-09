@@ -14,7 +14,7 @@ import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { IFiltro } from 'src/app/shared/interfaces/filtro.interface';
 import { IBandejaRequest } from 'src/app/shared/interfaces/bandeja.interface';
 import { ITipoMovimientoResponse } from 'src/app/shared/interfaces/tipo-movimiento.interface';
-import { FORMATO_FECHA_yyyyMMdd, FORMATO_FECHA_yyyyMMdd2, STORAGE, TipoFiltro } from 'src/app/global';
+import { FORMATO_FECHA_yyyyMMdd, FORMATO_FECHA_yyyyMMdd2, MensajesGlobales, STORAGE, TipoFiltro } from 'src/app/global';
 import { BolsaState } from 'src/app/shared/states/bolsa.state';
 import { ModificarBolsaFormComponent } from '../../components/modificar-bolsa-form/modificar-bolsa-form.component';
 import { IPreDespachoDeleteRequest, IPreDespachoRequest } from 'src/app/shared/interfaces/pre-despacho.interface';
@@ -186,6 +186,7 @@ export class GenerarBolsaComponent implements OnInit, AfterViewInit, OnDestroy {
     this.modificarBolsaForm.data = data;
     this.modificarBolsaForm.almacenSelect = this.formGenerarBolsa.almacen.value;
     this.modificarBolsaForm.isOpenModal = true;
+    this.modificarBolsaForm.titulo = `Modificar Pre Despacho Nro: ${data.id_Pre_Desp}`;
     this.cdr.detectChanges();
     this.modificarBolsaForm.loadBolsaForm();
   }
@@ -221,7 +222,7 @@ export class GenerarBolsaComponent implements OnInit, AfterViewInit, OnDestroy {
       id_Pre_Desp: data.id_Pre_Desp,
     }
 
-    this.mensajeSwal.mensajePregunta('¿Estás seguro de eliminar?').then(
+    this.mensajeSwal.mensajePregunta(`${MensajesGlobales._MENSAJE_ELIMINAR} ${data.id_Pre_Desp}?`).then(
       response => {
         if (response.isConfirmed) {
           this.generarBolsaService.deletePreDespacho(request).subscribe(() => {

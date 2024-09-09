@@ -1,5 +1,5 @@
 <form (ngSubmit)="guardarActualizado()" [formGroup]="form">
-  <p-dialog header="Modificar" [(visible)]="isOpenModal" [modal]="true" [style]="{ width: 'min-content' }"
+  <p-dialog [header]="titulo" [(visible)]="isOpenModal" [modal]="true" [style]="{ width: 'min-content' }"
     [draggable]="false" [resizable]="false" [baseZIndex]="100" (onHide)="closeModal()" >
     <section class="container-modal">
       <section class="container-form">
