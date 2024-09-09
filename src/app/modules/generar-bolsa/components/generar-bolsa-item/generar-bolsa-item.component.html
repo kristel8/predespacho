@@ -1,0 +1,43 @@
+<section *ngIf="!isDetalle">
+  <section class="container-item">
+    <section class="container-item__data">
+      <div class="row-item">
+        <span><b>ID:</b> {{item.id_Pre_Desp}}</span>
+        <span><b>Fecha:</b> {{item.fec_Creacion | formatField:'fec_Creacion'}}</span>
+      </div>
+      <span><b>Orden corte:</b> {{item.co_CodOrdPro | formatField}}</span>
+      <span><b>T. Mov:</b> {{item.des_Tip_Mov}}</span>
+      <span><b>Observación:</b> {{item.observaciones | formatField}}</span>
+    </section>
+    <section class="options">
+      <button pButton pRipple label="Modificar" icon="pi pi-pencil" iconPos="right" type="button"
+        [class]="'p-button-outlined p-button-sm'" (click)="modificarItem()"></button>
+      <button pButton pRipple label="Eliminar" icon="pi pi-trash" iconPos="right" type="button"
+        [class]="'p-button-outlined p-button-sm'" (click)="eliminarItem()"></button>
+      <button pButton pRipple label="Imprimir" icon="pi pi-print" iconPos="right" type="button"
+        [class]="'p-button-outlined p-button-sm'" (click)="imprimirItem()"></button>
+      <button pButton pRipple label="Detalle" icon="pi pi-eye" iconPos="right" type="button"
+        [class]="'p-button-outlined p-button-sm'" (click)="detalleItem()"></button>
+    </section>
+  </section>
+
+</section>
+
+<section class="container-item" *ngIf="isDetalle">
+  <section class="container-item__data">
+    <div class="row-item">
+      <span><b>Codigo:</b> {{item.cod_item}}</span>
+      <span><b>Requerido:</b> {{item.can_Requerida}}</span>
+    </div>
+    <div class="row-item">
+      <span><b>Stock:</b> {{item.can_en_Paquetes}}</span>
+      <span><b>Atendido:</b> {{item.can_Entregada}}</span>
+    </div>
+    <span><b>Sector:</b> {{item.sector | formatField}}</span>
+    <span><b>Descripción:</b> {{item.des_Item | formatField}}</span>
+  </section>
+  <section class="options">
+    <button pButton pRipple label="Detalle" icon="pi pi-eye" iconPos="right" type="button"
+      [class]="'p-button-outlined p-button-sm'" (click)="detalleItem()"></button>
+  </section>
+</section>

@@ -1,0 +1,22 @@
+.contain-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 40px 30px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  justify-items: center;
+  width: 100%;
+  &__detail {
+    text-align: end;
+    display: grid;
+    .title {
+      font-size: 4rem;
+      font-weight: 600;
+      color: #000;
+    }
+    span {
+      font-size: 1.4rem;
+      color: #6C757D;
+    }
+  }
+}

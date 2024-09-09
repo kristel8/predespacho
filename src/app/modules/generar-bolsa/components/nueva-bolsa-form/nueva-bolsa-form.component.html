@@ -1,0 +1,60 @@
+<form (ngSubmit)="guardar($event)" [formGroup]="form">
+  <section class="container-buscador">
+    <section #body class="container-form" *ngIf="isCargado">
+      <div class="form">
+        <span class="form-text">Almacén</span>
+        <p-dropdown [options]="almacenes" [filter]="true" filterBy="desAlmacen" optionLabel="desAlmacen"
+          placeholder="Seleccione" formControlName="almacen">
+        </p-dropdown>
+        <div class="validation" *ngIf="almacen?.touched">
+          <small *ngIf="!almacen.value" class="p-error">Campo es obligatorio</small>
+        </div>
+      </div>
+      <div class="form">
+        <span class="form-text">Tipo</span>
+        <p-dropdown [options]="tiposDeMovimiento" [filter]="true" filterBy="des_Tip_Mov" optionLabel="des_Tip_Mov"
+          placeholder="Seleccione" formControlName="tipoDeMovimiento" [disabled]="!tiposDeMovimiento.length">
+        </p-dropdown>
+        <div class="validation" *ngIf="tipoDeMovimiento?.touched">
+          <small *ngIf="!tipoDeMovimiento.value" class="p-error">Campo es obligatorio</small>
+        </div>
+      </div>
+
+      <div class="form" *ngIf="isOrdenCorte">
+        <span class="form-text">Orden de corte</span>
+        <input id="ordenCorte" type="text" formControlName="ordenCorte" appNumbersOnly pInputText autofocus />
+        <div class="validation" *ngIf="ordenCorte?.touched">
+          <small *ngIf="!ordenCorte.value && ordenCorte.invalid" class="p-error">Campo es obligatorio</small>
+        </div>
+      </div>
+
+      <div class="form" *ngIf="isAcabado">
+        <span class="form-text">Requerimientos</span>
+        <p-dropdown [options]="requerimientos" [filter]="true" filterBy="num_Prendas" optionLabel="num_Prendas"
+          placeholder="Seleccione" formControlName="requerimiento"
+          [disabled]="ordenCorte.invalid || !requerimientos.length">
+        </p-dropdown>
+        <div class="validation" *ngIf="requerimiento?.touched">
+          <small *ngIf="!requerimiento.value && requerimientos.length" class="p-error">Campo es obligatorio</small>
+          <small *ngIf="!requerimientos.length" class="p-error">Intente con otro Orden</small>
+        </div>
+      </div>
+
+      <div class="form">
+        <span class="form-text">Observación</span>
+        <textarea pInputTextarea id="observacion" formControlName="observacion"></textarea>
+      </div>
+    </section>
+
+    <app-skeleton-searcher [isMostrar]="!isCargado"></app-skeleton-searcher>
+  </section>
+  <br>
+
+  <section class="contain-button">
+    <button pButton pRipple label="Volver" icon="pi pi-arrow-left" iconPos="left" type="button"
+      [class]="'p-button-outlined'" (click)="regresar()" *ngIf="!isGuardado"></button>
+    <button pButton label="Guardar" icon="pi pi-save" iconPos="right" type="submit"
+      [disabled]="form.invalid || isGuardado"></button>
+  </section>
+</form>
+<br>

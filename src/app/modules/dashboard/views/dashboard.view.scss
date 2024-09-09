@@ -1,0 +1,16 @@
+.dashboard {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  height: 75vh;
+
+  img {
+    max-width: 20em;
+    width: 100%;
+    opacity: 0.2;
+    @media (max-width: 900px) {
+      max-width: 15em;
+    }
+  }
+}

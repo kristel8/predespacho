@@ -1,0 +1,6 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<section class="contain-login">
+  <div class="background">
+  </div>
+  <app-form-login #formLogin class="contain-login__form" (authLogin)="login($event)"></app-form-login>
+</section>

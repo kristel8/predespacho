@@ -1,0 +1,111 @@
+.container-form-login {
+  position: relative;
+  display: grid;
+  max-width: 60%;
+  text-align: center;
+  margin: auto;
+  justify-items: center;
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
+
+  .contain-header {
+    display: grid;
+
+    .background {
+      display: none;
+
+      @media (max-width: 760px) {
+        display: block;
+        position: fixed;
+        width: 50em;
+      }
+
+      @media (min-width: 700px) and (max-width: 900px) {
+        display: block;
+        position: absolute;
+        width: 100%;
+      }
+    }
+
+    h2 {
+      color: #fff;
+      font-weight: 700;
+      z-index: 999;
+    }
+
+    .user-logo {
+      display: none;
+
+      @media (max-width: 900px) {
+        display: block;
+        justify-self: center;
+        width: 80px;
+        height: 80px;
+        z-index: 9;
+      }
+    }
+  }
+
+  .contain-form {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    display: grid;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 30px;
+    padding: 2em 2.5em;
+    gap: 20px;
+    z-index: 999;
+    font-weight: 600;
+
+    @media (max-width: 800px) {
+      max-width: 300px;
+    }
+    h2 {
+      font-weight: bold;
+    }
+    p-button {
+      display: flex;
+      width: 100%;
+      max-width: 178px !important;
+      justify-self: center;
+      margin-top: 15px;
+
+      ::ng-deep button {
+        width: 100%;
+      }
+    }
+
+    .form {
+      width: 100%;
+      display: grid;
+      text-align: start;
+      grid-template-rows: auto 1fr;
+
+      .form-text {
+        padding-bottom: 10px;
+      }
+
+      .p-inputtext {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.password {
+  position: relative;
+
+  .toggle-password {
+    i {
+      position: absolute;
+      font-size: 20px;
+      right: 10px;
+      bottom: 8px;
+      color: grey;
+    }
+  }
+}

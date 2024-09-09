@@ -1,0 +1,8 @@
+<section class="container-header">
+  <h3>Agregar producto</h3>
+  <i class="icon pi pi-fw pi-plus"></i>
+</section>
+<br>
+<app-agregar-detalle-form #formAgregarDetalle (guardar)="guardar()" (volver)="regresar()"
+  (partir)="partir()"></app-agregar-detalle-form>
+<app-partir-modal #partirModal (aceptar)="aceptarPartir()"></app-partir-modal>

@@ -1,0 +1,13 @@
+<div class="contain-skeleton" *ngIf="isMostrar && type === 'searcher'">
+  <div *ngFor="let item of [].constructor(col); let i = index" class="skeleton">
+    <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+    <p-skeleton width="100%" height="2.5rem"></p-skeleton>
+  </div>
+</div>
+
+<!-- <div class="contain-skeleton" *ngIf="isMostrar && type === 'table'">
+  <div *ngFor="let item of [].constructor(col); let i = index" class="skeleton">
+    <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+    <p-skeleton width="100%" height="2.5rem"></p-skeleton>
+  </div>
+</div> -->

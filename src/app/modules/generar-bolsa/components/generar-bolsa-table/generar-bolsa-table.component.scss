@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: max-content;
+    row-gap: 5px;
+    column-gap: 5px;
+    justify-content: center;
+    margin: auto;
+  }
+
+  p-table {
+    tr > th {
+      text-align: center;
+    }
+
+    tr > td {
+      text-align: center;
+    }
+  }
+}
+
+::ng-deep .p-dataview .p-dataview-content {
+  background: transparent;
+  height: 50vh;
+  overflow-y: auto;
+}

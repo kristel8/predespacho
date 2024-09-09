@@ -1,0 +1,24 @@
+:host {
+  display: block;
+
+  .contain-form {
+    display: flex;
+    column-gap: 15px;
+    width: 100%;
+  }
+
+  .contain-button {
+    display: flex;
+    column-gap: 15px;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .container-opciones {
+    justify-self: start;
+  }
+
+  button {
+    float: inline-end;
+  }
+}

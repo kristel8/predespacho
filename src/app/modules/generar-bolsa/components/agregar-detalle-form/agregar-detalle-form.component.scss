@@ -1,0 +1,30 @@
+:host {
+  display: block;
+
+  .container-buscador {
+    max-width: 500px;
+  }
+  .contain-form {
+    display: flex;
+    column-gap: 15px;
+  }
+
+  .contain-button {
+    display: flex;
+    column-gap: 15px;
+    max-width: 500px;
+    justify-content: flex-end;
+  }
+
+  .container-form .form {
+    height: min-content;
+  }
+
+  .container-opciones {
+    justify-self: start;
+  }
+
+  button {
+    float: inline-end;
+  }
+}

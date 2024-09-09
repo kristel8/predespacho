@@ -1,0 +1,13 @@
+<app-modificar-bolsa-form #modificarBolsaForm (guardar)="guardarActualizado()"></app-modificar-bolsa-form>
+<app-imprimir-modal #imprimirModal (imprimir)="imprimirItem($event)"></app-imprimir-modal>
+
+<section class="container-header">
+  <h3>Generación de bolsa</h3>
+  <i class="pi pi-fw pi-shopping-cart icon"></i>
+</section>
+<br>
+<section #form>
+  <app-generar-bolsa-form #formGenerarBolsa (buscarBolsa)="buscarBolsa()"></app-generar-bolsa-form>
+  <app-generar-bolsa-table #tableGenerarBolsa (modificar)="modificarItem($event)" (eliminar)="eliminarItem($event)"
+    (imprimir)="imprimirItem($event)" (detalle)="detalleItem($event)"></app-generar-bolsa-table>
+</section>

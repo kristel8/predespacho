@@ -1,0 +1,39 @@
+<form (ngSubmit)="login()" [formGroup]="loginForm">
+  <section class="container-form-login">
+    <div class="contain-form">
+      <h2>Iniciar Sesión</h2>
+      <div class="form">
+        <span class="form-text">Usuario:</span>
+        <span class="p-input-icon-left">
+          <i class="pi pi-user"></i>
+          <input id="codUsuario" type="text" formControlName="codUsuario" autocomplete="off" pInputText />
+          <div class="validation" *ngIf="codUsuario?.invalid && (codUsuario?.dirty || codUsuario?.touched)">
+            <small *ngIf="codUsuario?.errors?.['required']" class="p-error">Usuario es obligatorio</small>
+          </div>
+        </span>
+      </div>
+
+      <div class="form">
+        <div class="form">
+          <span class="form-text">Contraseña:</span>
+          <span class="p-input-icon-left">
+            <i class="pi pi-lock"></i>
+            <input id="password" #clave type="password" formControlName="password" autocomplete="new-password"
+              pInputText />
+            <div class="validation" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+              <small *ngIf="password?.errors?.['required']" class="p-error">Contraseña es obligatorio</small>
+            </div>
+            <div class="password">
+              <span toggle="#password-field" class="toggle-password" (click)="viewPassword(clave)"> <i
+                  [class]="iconEye"></i>
+              </span>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <p-button label="Ingresar" iconPos="right" type="submit" [loading]="loading" [disabled]="loginForm.invalid">
+      </p-button>
+    </div>
+  </section>
+</form>

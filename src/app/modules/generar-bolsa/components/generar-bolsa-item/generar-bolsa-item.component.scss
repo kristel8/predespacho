@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.container-item {
+  display: flex;
+  column-gap: 10px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+
+  &__data {
+    display: grid;
+    min-width: 200px;
+    width: 80%;
+    @media (max-width: 500px) {
+      min-width: 190px;
+      width: 80%;
+    }
+
+    @media (max-width: 400px) {
+      max-width: 185px;
+      > span {
+        width: 185px;
+      }
+    }
+
+    .row-item {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .options {
+    display: grid;
+    row-gap: 5px;
+    align-content: center;
+    border-left: 1px solid #ccc;
+    padding-left: 5px;
+  }
+}

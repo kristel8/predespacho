@@ -1,0 +1,69 @@
+.contain-login {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #6B1D1D;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+  }
+  .background {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url("../../../../assets/img/login/fondo-tsc2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    @media (max-width: 700px) {
+      height: 35vh;
+      background-position: bottom;
+      background-image: url("../../../../assets/img/login/fondo-top-tsc.svg");
+    }
+
+    @media (max-width: 900px) {
+      height: 45vh;
+      background-image: url("../../../../assets/img/login/fondo-top-tsc.svg");
+    }
+
+    &-transparent {
+      background-color: #000;
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      opacity: 0.5;
+    }
+    img {
+      max-width: 200px;
+      z-index: 999;
+    }
+
+  }
+/*
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    background-image: none;
+  } */
+
+  &__images {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    .logo {
+      width: 18em;
+      z-index: 99;
+    }
+  }
+
+  &__form {
+    margin: auto 0;
+  }
+}

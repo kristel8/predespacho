@@ -1,0 +1,10 @@
+<section class="container-header" *ngIf="isNuevo">
+  <h3>Añadir bolsa</h3>
+  <i class="pi pi-fw pi-plus"></i>
+</section>
+<br>
+<app-nueva-bolsa-form #formNuevaBolsa (guardarBolsa)="guardar()" (volver)="regresar()" *ngIf="isNuevo"></app-nueva-bolsa-form>
+<app-nueva-bolsa-table #tableNuevaBolsa (volver)="regresar()" (agregar)="agregar()" (verDetalle)="detalle($event)" (partir)="partir($event)"></app-nueva-bolsa-table>
+
+<app-detalle-modal #detalleModal (eliminar)="eliminarItem($event)"></app-detalle-modal>
+<app-partir-modal #partirModal (aceptar)="aceptarPartir()"></app-partir-modal>

@@ -1,0 +1,80 @@
+<form class="container-buscador" (ngSubmit)="buscar($event)" [formGroup]="form">
+  <section #body class="container-form" *ngIf="isCargado">
+    <div class="form">
+      <span class="form-text">Almacén</span>
+      <p-dropdown [options]="almacenes" [filter]="true" filterBy="desAlmacen" optionLabel="desAlmacen"
+        placeholder="Seleccione" formControlName="almacen">
+      </p-dropdown>
+      <div class="validation" *ngIf="almacen?.touched">
+        <small *ngIf="!almacen.value" class="p-error">Campo es obligatorio</small>
+      </div>
+    </div>
+
+    <div class="form">
+      <span class="form-text">Filtro</span>
+      <p-dropdown [options]="filtros" [filter]="true" filterBy="nomFiltro" optionLabel="nomFiltro"
+        placeholder="Seleccione" formControlName="filtro">
+      </p-dropdown>
+      <div class="validation" *ngIf="filtro?.touched">
+        <small *ngIf="!filtro.value" class="p-error">Campo es obligatorio</small>
+      </div>
+    </div>
+
+    <div class="form" *ngIf="TipoFiltro.Orden === filtroSeleccionado">
+      <span class="form-text">Orden de corte</span>
+      <input id="ordenCorte" type="text" formControlName="ordenCorte" appNumbersOnly pInputText autofocus />
+      <div class="validation" *ngIf="ordenCorte?.touched">
+        <small *ngIf="!ordenCorte.value && ordenCorte.invalid" class="p-error">Campo es obligatorio</small>
+      </div>
+    </div>
+
+    <div class="form" *ngIf="TipoFiltro.Despacho === filtroSeleccionado">
+      <span class="form-text">Pre Despacho</span>
+      <input id="preDespacho" type="text" formControlName="preDespacho" appNumbersOnly pInputText autofocus />
+      <div class="validation" *ngIf="preDespacho?.touched">
+        <small *ngIf="!preDespacho.value" class="p-error">Campo es obligatorio</small>
+      </div>
+    </div>
+
+    <div class="form" *ngIf="TipoFiltro.Movimiento === filtroSeleccionado">
+      <span class="form-text">Tipo de Movimiento</span>
+      <p-dropdown [options]="tiposDeMovimiento" [filter]="true" filterBy="des_Tip_Mov" optionLabel="des_Tip_Mov"
+        placeholder="Seleccione" formControlName="tipoDeMovimiento">
+      </p-dropdown>
+      <div class="validation" *ngIf="tipoDeMovimiento?.touched">
+        <small *ngIf="!tipoDeMovimiento.value" class="p-error">Campo es obligatorio</small>
+      </div>
+    </div>
+
+    <div class="contain-form" *ngIf="TipoFiltro.Fechas === filtroSeleccionado">
+      <div class="form">
+        <span class="form-text">Inicio</span>
+        <p-calendar formControlName="fechaInicio"  [showIcon]="true" dateFormat="yy-mm-dd"
+          appendTo="body"></p-calendar>
+      </div>
+      <div class="form">
+        <span class="form-text">Fin</span>
+        <p-calendar formControlName="fechaFin" [showIcon]="true" dateFormat="yy-mm-dd"
+          appendTo="body"></p-calendar>
+      </div>
+    </div>
+
+    <div class="form">
+      <br>
+      <p-checkbox formControlName="soloDespacho" [binary]="true" label="Solo pendiente de despacho"></p-checkbox>
+    </div>
+  </section>
+
+  <app-skeleton-searcher [isMostrar]="!isCargado"></app-skeleton-searcher>
+
+  <section class="container-opciones">
+    <p-button label="Buscar" icon="pi pi-search" iconPos="right" type="submit" [disabled]="form.invalid"></p-button>
+  </section>
+</form>
+<br>
+
+<section class="contain-button">
+  <button pButton pRipple label="Agregar" icon="pi pi-plus" iconPos="right" type="button" [class]="'p-button-outlined'"
+    (click)="nuevoBolsa()"></button>
+</section>
+<br>

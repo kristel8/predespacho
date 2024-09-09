@@ -1,0 +1,8 @@
+:host {
+  display: block;
+
+  ::ng-deep p-radiobutton {
+    position: relative;
+    top: 10px;
+  }
+}

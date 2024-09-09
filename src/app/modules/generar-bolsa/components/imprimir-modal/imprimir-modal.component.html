@@ -1,0 +1,22 @@
+<form (ngSubmit)="imprimirItem()">
+  <p-dialog header="Elegir impresora" [(visible)]="isOpenModal" [modal]="true" [style]="{ width: 'min-content' }"
+    [draggable]="false" [resizable]="false" [baseZIndex]="100" (onHide)="closeModal()" [dismissableMask]="true">
+    <section class="container-modal">
+      <section class="container-form">
+        <div class="form">
+          <span class="form-text">Impresoras</span>
+          <p-dropdown [options]="impresoras" [filter]="true" filterBy="nomImpresora" optionLabel="nomImpresora"
+            placeholder="Seleccione" [formControl]="impresora" appendTo="body">
+          </p-dropdown>
+        </div>
+      </section>
+
+    </section>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Volver" icon="pi pi-arrow-left" iconPos="left" type="button"
+        [class]="'p-button-outlined'" (click)="closeModal()"></button>
+      <button pButton label="Imprimir" icon="pi pi-print" iconPos="right" type="submit"
+        [disabled]="impresora.invalid"></button>
+    </ng-template>
+  </p-dialog>
+</form>
