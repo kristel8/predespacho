@@ -6,3 +6,16 @@ export interface IPartirRequest extends IUser {
   Nro_Paquetes: number;
   Impresora: string;
 }
+
+export interface IAtributoPaqueteResponse {
+  codigo: string;
+  cod_item: string;
+  cantidad: number;
+  cod_UniMed: string;
+  cod_prov: string;
+  cod_talla: string;
+  combo: string;
+  upc: string;
+  nom_Usuario: string;
+  fec_Creacion: string;
+}

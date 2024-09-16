@@ -187,8 +187,8 @@ export class GenerarBolsaComponent implements OnInit, AfterViewInit, OnDestroy {
     this.modificarBolsaForm.almacenSelect = this.formGenerarBolsa.almacen.value;
     this.modificarBolsaForm.isOpenModal = true;
     this.modificarBolsaForm.titulo = `Modificar Pre Despacho Nro: ${data.id_Pre_Desp}`;
-    this.cdr.detectChanges();
     this.modificarBolsaForm.loadBolsaForm();
+    this.cdr.detectChanges();
   }
 
   guardarActualizado(): void {

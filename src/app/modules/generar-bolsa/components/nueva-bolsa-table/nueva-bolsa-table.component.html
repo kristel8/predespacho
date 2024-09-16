@@ -69,7 +69,6 @@
 <section class="contain-button" *ngIf="isMostrarTabla">
   <button pButton pRipple label="Volver" icon="pi pi-arrow-left" iconPos="left" type="button"
     [class]="'p-button-outlined'" (click)="regresar()"></button>
-  <button pButton label="Partir" icon="pi pi-clone" iconPos="right" type="button" (click)="partirItem()"
-    *ngIf="productos.length"></button>
+  <button pButton label="Partir" icon="pi pi-clone" iconPos="right" type="button" (click)="partirItem()"></button>
   <button pButton label="Agregar" icon="pi pi-plus" iconPos="right" (click)="agregarDetalle()"></button>
 </section>

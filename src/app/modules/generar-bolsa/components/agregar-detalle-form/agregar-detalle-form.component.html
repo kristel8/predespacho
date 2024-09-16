@@ -3,9 +3,9 @@
     <section #body class="container-form">
       <div class="form">
         <span class="form-text">Código de barra</span>
-        <input id="codBarra" type="text" [formControl]="codBarra" appNumbersOnly pInputText autofocus />
-        <div class="validation" *ngIf="codBarra?.touched">
-          <small *ngIf="!codBarra.value && codBarra.invalid" class="p-error">Campo es obligatorio</small>
+        <input id="codPaquete" type="text" [formControl]="codPaquete" appNumbersOnly pInputText autofocus />
+        <div class="validation" *ngIf="codPaquete?.touched">
+          <small *ngIf="!codPaquete.value && codPaquete.invalid" class="p-error">Campo es obligatorio</small>
         </div>
       </div>
       <div class="form">
@@ -19,7 +19,7 @@
     <button pButton pRipple label="Volver" icon="pi pi-arrow-left" iconPos="left" type="button"
       [class]="'p-button-outlined'" (click)="regresar()"></button>
     <button pButton label="Guardar" icon="pi pi-save" iconPos="right" type="submit"
-      [disabled]="codBarra.invalid"></button>
+      [disabled]="codPaquete.invalid"></button>
     <button pButton label="Partir" icon="pi pi-clone" iconPos="right" type="button" (click)="partirItem()"></button>
   </section>
 </form>

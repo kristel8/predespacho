@@ -299,12 +299,12 @@ export class NuevaBolsaComponent implements OnInit, AfterViewInit {
   }
 
   aceptarPartir(): void {
-    const { codBarra, nuevaCantidad, cantPaquetes, impresora } = this.partirModal.form.getRawValue();
+    const { codPaquete, cantPorPaquete, cantAGenerar, impresora } = this.partirModal.form.getRawValue();
 
     const request: IPartirRequest = {
-      Id: +codBarra,
-      cantidad_del_NUEVO_paquete: nuevaCantidad,
-      Nro_Paquetes: cantPaquetes,
+      Id: +codPaquete,
+      cantidad_del_NUEVO_paquete: cantPorPaquete,
+      Nro_Paquetes: cantAGenerar,
       Impresora: impresora.rutaUbicacionImpresora,
     }
     this.generarBolsaService.postPartirProducto(request).subscribe({

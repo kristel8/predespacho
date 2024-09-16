@@ -11,7 +11,7 @@ export class AgregarDetalleFormComponent {
   isCargado = false;
   isGuardado = false;
   cantidad = 0;
-  codBarra = new FormControl('', Validators.required);
+  codPaquete = new FormControl('', Validators.required);
 
   @Output() guardar = new EventEmitter<void>();
   @Output() volver = new EventEmitter<void>();
@@ -23,8 +23,8 @@ export class AgregarDetalleFormComponent {
   }
 
   guardarItem(value: any): void {
-    if (this.codBarra.invalid) {
-      this.codBarra.markAllAsTouched();
+    if (this.codPaquete.invalid) {
+      this.codPaquete.markAllAsTouched();
       return;
     }
 

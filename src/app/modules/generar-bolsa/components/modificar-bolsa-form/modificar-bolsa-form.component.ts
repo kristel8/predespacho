@@ -6,6 +6,7 @@ import { ITipoMovimientoResponse } from 'src/app/shared/interfaces/tipo-movimien
 import { GenerarBolsaService } from '../../services/generar-bolsa.service';
 import { IAlmacenResponse } from 'src/app/shared/interfaces/almacen.interface';
 import { BolsaState } from 'src/app/shared/states/bolsa.state';
+import { IBandejaResponse } from 'src/app/shared/interfaces/bandeja.interface';
 
 @Component({
   selector: 'app-modificar-bolsa-form',
@@ -18,7 +19,7 @@ export class ModificarBolsaFormComponent implements OnInit {
   isOpenModal = false;
 
   almacenSelect: any;
-  data: any;
+  data: IBandejaResponse;
   titulo: string;
 
   requerimientos: any[] = [];
@@ -134,7 +135,7 @@ export class ModificarBolsaFormComponent implements OnInit {
 
   loadBolsaForm(): void {
     if (this.data) {
-      const { co_CodOrdPro, id_Tip_Mov, observaciones, id_Pre_Desp } = this.data;
+      const { co_CodOrdPro, id_Tip_Mov, observaciones, id_Pre_Desp, isTieneBarrasAsociadas } = this.data;
       const almacenSelected = this.bolsaState.almacenes.find(item => item.codAlmacen === this.almacenSelect.codAlmacen);
       const movimientoSelected = this.bolsaState.movimientos.find(item => item.id_Tip_Mov === id_Tip_Mov);
       this.form.patchValue({
@@ -145,6 +146,15 @@ export class ModificarBolsaFormComponent implements OnInit {
         requerimiento: null,
         observacion: observaciones
       })
+
+      if (isTieneBarrasAsociadas) {
+        this.form.disable();
+        this.observacion.enable();
+      } else {
+        this.form.enable();
+      }
+
+      this.almacen.disable();
     }
   }
 

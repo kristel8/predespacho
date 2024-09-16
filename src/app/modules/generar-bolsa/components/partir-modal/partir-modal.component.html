@@ -4,29 +4,45 @@
     <section class="container-modal">
       <section class="container-form">
         <div class="form">
-          <span class="form-text">Código de barra</span>
-          <input id="codBarra" type="text" formControlName="codBarra" pInputText autofocus />
-          <div class="validation" *ngIf="codBarra?.touched">
-            <small *ngIf="!codBarra.value && codBarra.invalid" class="p-error">Campo es obligatorio</small>
+          <span class="form-text">Código de Paquete</span>
+          <input id="codPaquete" type="text" formControlName="codPaquete" (keydown.enter)="consultar()" pInputText autofocus />
+          <div class="validation" *ngIf="codPaquete?.touched">
+            <div style="right: 0;"><small *ngIf="codPaquete.value" class="p-text-secondary">Presione enter</small></div>
+            <small *ngIf="!codPaquete.value && codPaquete.invalid" class="p-error">Campo es obligatorio</small>
           </div>
         </div>
 
-        <div class="form">
-          <span class="form-text">Nueva cantidad</span>
-          <p-inputNumber id="nuevaCantidad" formControlName="nuevaCantidad" inputId="minmax" inputId="minmax"
-            mode="decimal" [min]="1" [max]="100">
-          </p-inputNumber>
-          <div class="validation" *ngIf="nuevaCantidad?.touched">
-            <small *ngIf="!nuevaCantidad.value && nuevaCantidad.invalid" class="p-error">Campo es obligatorio</small>
+        <div class="form-group">
+          <div class="form">
+            <span class="form-text">Cantidad Actual</span>
+            <input id="cantActual" type="text" formControlName="cantActual" pInputText readonly />
+          </div>
+
+          <div class="form">
+            <span class="form-text">UM</span>
+            <input id="um" type="text" formControlName="um" pInputText readonly />
           </div>
         </div>
 
-        <div class="form">
-          <span class="form-text">Cantidad de paquetes</span>
-          <p-inputNumber id="cantPaquetes" formControlName="cantPaquetes" inputId="minmax" inputId="minmax"
-            mode="decimal" [min]="1" [max]="100"></p-inputNumber>
-          <div class="validation" *ngIf="cantPaquetes?.touched">
-            <small *ngIf="!cantPaquetes.value && cantPaquetes.invalid" class="p-error">Campo es obligatorio</small>
+        <div class="form-group">
+          <div class="form">
+            <span class="form-text">Cantidad por Paquete</span>
+            <p-inputNumber inputId="cantPorPaqueteInput" #cantPorPaqueteInput formControlName="cantPorPaquete" inputId="minmax" inputId="minmax"
+              mode="decimal" [min]="1" [max]="100">
+            </p-inputNumber>
+            <div class="validation" *ngIf="cantPorPaquete?.touched">
+              <small *ngIf="!cantPorPaquete.value && cantPorPaquete.invalid" class="p-error">Campo es
+                obligatorio</small>
+            </div>
+          </div>
+
+          <div class="form">
+            <span class="form-text">Paquetes a generar</span>
+            <p-inputNumber id="cantAGenerar" formControlName="cantAGenerar" inputId="minmax" inputId="minmax"
+              mode="decimal" [min]="1" [max]="100"></p-inputNumber>
+            <div class="validation" *ngIf="cantAGenerar?.touched">
+              <small *ngIf="!cantAGenerar.value && cantAGenerar.invalid" class="p-error">Campo es obligatorio</small>
+            </div>
           </div>
         </div>
 

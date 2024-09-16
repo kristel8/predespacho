@@ -11,7 +11,7 @@ import { IDetalleDetallePreDespachoRequest, IDetalleDetallePreDespachoResponse, 
 import { IDetallePreDespachoRequest, IGenerateDetalleRequest } from 'src/app/shared/interfaces/detalle-pre-despacho.interface';
 import { IFiltro } from 'src/app/shared/interfaces/filtro.interface';
 import { IImpresionRequest, IImpresorasResponse } from 'src/app/shared/interfaces/impresion.interface';
-import { IPartirRequest } from 'src/app/shared/interfaces/partir-producto.interface';
+import { IAtributoPaqueteResponse, IPartirRequest } from 'src/app/shared/interfaces/partir-producto.interface';
 import { IPreDespachoDeleteRequest, IPreDespachoRequest } from 'src/app/shared/interfaces/pre-despacho.interface';
 import { IRequerimientoResponse } from 'src/app/shared/interfaces/requerimientos.interface';
 import { ITipoMovimientoResponse } from 'src/app/shared/interfaces/tipo-movimiento.interface';
@@ -155,6 +155,7 @@ export class GenerarBolsaService {
     return this.httpClient.post<number>(`${this.URLApi}${Endpoint.GenerateDetalle}`, request);
   }
 
+  /** PARTIR  */
   postPartirProducto(data: IPartirRequest): Observable<number> {
     const request: IPartirRequest = {
       ...data,
@@ -163,6 +164,16 @@ export class GenerarBolsaService {
 
     return this.httpClient.post<number>(`${this.URLApi}${Endpoint.Partir}`, request);
   }
+
+  getAtributos(id: number): Observable<IAtributoPaqueteResponse> {
+    let params = new HttpParams();
+    params = params.append('id', id);
+
+    return this.httpClient.get<IAtributoPaqueteResponse>(`${this.URLApi}${Endpoint.GetAtributos}`, { params })
+    .pipe(map((response) => response[0]));
+  }
+
+  /** Servicios detalle */
 
   getDetalleBolsa(request: IDetallePreDespachoRequest): Observable<any[]> {
     let params = new HttpParams();
@@ -179,8 +190,6 @@ export class GenerarBolsaService {
         map((response: any[]) => response.map((item, index) => ({ ...item, index })))
       );
   }
-
-  /** Servicios detalle */
 
   deleteDetalle(data: IDetallePreDespachoDeleteRequest): Observable<any> {
     const request: IDetallePreDespachoDeleteRequest = {

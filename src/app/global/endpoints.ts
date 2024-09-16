@@ -14,4 +14,5 @@ export const Endpoint = {
   GenerateDetalle: '/api/PreDespachoDet/Generate',
   DeleteDetalle: '/api/PreDespachoDet/Delete',
   Partir: '/api/Paquete/Partir',
+  GetAtributos: '/api/Paquete/GetAtributos'
 }

@@ -26,6 +26,8 @@ export class GenerarBolsaTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cdr.detectChanges();
+
     this.screenSizeService.screenSize$.subscribe((size) => {
       this.screenSize = size;
       this.isScreenMobile = size.width <= 960;

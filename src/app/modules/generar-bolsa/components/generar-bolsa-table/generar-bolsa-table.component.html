@@ -53,13 +53,13 @@
 
 <section *ngIf="isScreenMobile && isMostrarTabla">
   <h3>Búsqueda</h3>
-  <p-dataView #dv [value]="items" [paginator]="true" [rows]="10" scrollHeight="calc(60vh - 200px)"
-    filterBy="observaciones,des_Tip_Mov,fec_Creacion,co_CodOrdPro,id_Pre_Desp" scrollHeight="calc(60vh - 200px)"
+  <p-dataView #dv1 [value]="items" [paginator]="true" [rows]="10" scrollHeight="calc(60vh - 200px)"
+    filterBy="observaciones,des_Tip_Mov,fec_Creacion,co_CodOrdPro,id_Pre_Desp"
     [rows]="9" layout="grid">
     <ng-template pTemplate="header">
       <span class="p-input-icon-left mb-2 md:mb-0">
         <i class="pi pi-search"></i>
-        <input type="search" pInputText placeholder="Buscar" (input)="dv.filter($event.target.value)">
+        <input type="search" pInputText placeholder="Buscar" (input)="dv1.filter($event.target.value)">
       </span>
     </ng-template>
     <ng-template let-item pTemplate="gridItem">

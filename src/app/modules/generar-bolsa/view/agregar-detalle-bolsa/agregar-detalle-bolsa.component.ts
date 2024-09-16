@@ -51,23 +51,22 @@ export class AgregarDetalleBolsaComponent implements OnInit, AfterViewInit {
       sector = seleccionadoDetalle.sector;
     }
 
-    const codBarra = this.formAgregarDetalle.codBarra.value;
+    const codPaquete = this.formAgregarDetalle.codPaquete.value;
     const request: IGenerateDetalleRequest = {
       opcion: Opcion.Ingresar,
       id_Pre_Desp: preDespachoId,
-      id: +codBarra,
+      id: +codPaquete,
       sector1: sector
     }
 
     this.generarBolsaService.postAñadirProducto(request).subscribe({
       next: (response) => {
-        this.mensajeSwal.mensajeGrabadoSatisfactorio();
         this.formAgregarDetalle.cantidad++;
         this.storage.setItem(STORAGE.añadidos, this.formAgregarDetalle.cantidad);
-        this.formAgregarDetalle.codBarra.reset();
+        this.formAgregarDetalle.codPaquete.reset();
       },
       error: () => {
-        this.formAgregarDetalle.codBarra.reset();
+        this.formAgregarDetalle.codPaquete.reset();
       }
     })
   }
@@ -77,12 +76,12 @@ export class AgregarDetalleBolsaComponent implements OnInit, AfterViewInit {
   }
 
   aceptarPartir(): void {
-    const { codBarra, nuevaCantidad, impresora, cantPaquetes } = this.partirModal.form.getRawValue();
+    const { codPaquete, cantPorPaquete, impresora, cantAGenerar } = this.partirModal.form.getRawValue();
 
     const request: IPartirRequest = {
-      Id: +codBarra,
-      cantidad_del_NUEVO_paquete: nuevaCantidad,
-      Nro_Paquetes: cantPaquetes,
+      Id: +codPaquete,
+      cantidad_del_NUEVO_paquete: cantPorPaquete,
+      Nro_Paquetes: cantAGenerar,
       Impresora: impresora.rutaUbicacionImpresora,
     }
     this.generarBolsaService.postPartirProducto(request).subscribe({

@@ -17,4 +17,5 @@ export interface IBandejaResponse {
   observaciones: string;
   co_CodOrdPro: string;
   fec_Creacion: string;
+  isTieneBarrasAsociadas: string;
 }

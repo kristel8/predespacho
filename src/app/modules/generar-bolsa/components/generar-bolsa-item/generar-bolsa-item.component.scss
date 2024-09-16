@@ -17,11 +17,11 @@
     width: 80%;
     @media (max-width: 500px) {
       min-width: 190px;
-      width: 80%;
+      width: 65%;
     }
 
     @media (max-width: 400px) {
-      max-width: 185px;
+      min-width: 165px;
       > span {
         width: 185px;
       }
@@ -30,6 +30,10 @@
     .row-item {
       display: flex;
       justify-content: space-between;
+      @media (max-width: 500px) {
+        justify-content: flex-start;
+        column-gap: 10px;
+      }
     }
   }
 
