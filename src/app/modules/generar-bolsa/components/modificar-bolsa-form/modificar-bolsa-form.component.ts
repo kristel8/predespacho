@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Subscription, of } from 'rxjs';
-import { distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Observable, Subscription, of } from 'rxjs';
+import { distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { ITipoMovimientoResponse } from 'src/app/shared/interfaces/tipo-movimiento.interface';
 import { GenerarBolsaService } from '../../services/generar-bolsa.service';
 import { IAlmacenResponse } from 'src/app/shared/interfaces/almacen.interface';
@@ -68,21 +68,6 @@ export class ModificarBolsaFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAlmacen();
-    this.subscriptions.add(
-      this.almacen.valueChanges
-        .pipe(distinctUntilChanged())
-        .subscribe((response) => {
-          if (response) {
-            this.generarBolsaService.getTipoMovimiento(response.codAlmacen).subscribe((response) => {
-              this.tiposDeMovimiento = response;
-              this.bolsaState.setMovimientos(response);
-              this.loadBolsaForm();
-            });
-          }
-        })
-    );
-
     this.subscriptions.add(
       this.tipoDeMovimiento.valueChanges
         .pipe(distinctUntilChanged())
@@ -135,27 +120,45 @@ export class ModificarBolsaFormComponent implements OnInit {
 
   loadBolsaForm(): void {
     if (this.data) {
-      const { co_CodOrdPro, id_Tip_Mov, observaciones, id_Pre_Desp, isTieneBarrasAsociadas } = this.data;
-      const almacenSelected = this.bolsaState.almacenes.find(item => item.codAlmacen === this.almacenSelect.codAlmacen);
-      const movimientoSelected = this.bolsaState.movimientos.find(item => item.id_Tip_Mov === id_Tip_Mov);
-      this.form.patchValue({
-        idPreDesp: id_Pre_Desp,
-        almacen: almacenSelected,
-        tipoDeMovimiento: movimientoSelected,
-        ordenCorte: co_CodOrdPro,
-        requerimiento: null,
-        observacion: observaciones
-      })
+      const { co_CodOrdPro, id_Tip_Mov, observaciones, id_Pre_Desp } = this.data;
 
-      if (isTieneBarrasAsociadas) {
-        this.form.disable();
-        this.observacion.enable();
-      } else {
-        this.form.enable();
-      }
+      this.bolsaState.almacenes$.pipe(
+        switchMap((response) => {
+          this.almacenes = response;
+          const almacenSelected = this.bolsaState.almacenes.find(item => item.codAlmacen === this.almacenSelect.codAlmacen);
+          this.almacen.setValue(almacenSelected);
+          return this.generarBolsaService.getTipoMovimiento(almacenSelected.codAlmacen);
+        }),
+      ).subscribe(response => {
+        this.tiposDeMovimiento = response;
+        this.bolsaState.setMovimientos(response);
+        const movimientoSelected = this.bolsaState.movimientos.find(item => item.id_Tip_Mov === id_Tip_Mov);
+        this.form.patchValue({
+          idPreDesp: id_Pre_Desp,
+          tipoDeMovimiento: movimientoSelected,
+          ordenCorte: co_CodOrdPro,
+          requerimiento: null,
+          observacion: observaciones
+        })
 
-      this.almacen.disable();
+        setTimeout(() => {
+          this.changeDisable();
+        }, 700);
+      });
     }
+  }
+
+  changeDisable(): void {
+    const { isTieneBarrasAsociadas } = this.data;
+
+    if (isTieneBarrasAsociadas) {
+      this.form.disable();
+      this.observacion.enable();
+    } else {
+      this.form.enable();
+    }
+
+    this.almacen.disable();
   }
 
   getAlmacen(): void {

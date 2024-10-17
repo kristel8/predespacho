@@ -216,7 +216,7 @@ export class GenerarBolsaService {
           item.fec_Asigna_Pre_Desp = this.formatField.formatDate(item.fec_Asigna_Pre_Desp, FORMATO_FECHA_yyyyMMdd2);
           return item;
         });
-      }));;
+      }));
   }
 
 }

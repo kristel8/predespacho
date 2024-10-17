@@ -31,10 +31,11 @@ export class ImprimirModalComponent implements OnInit {
   }
 
   imprimirItem(): void {
+    const impresora = this.impresora.value;
     const request: IImpresionRequest = {
       ids: this.data.id_Pre_Desp,
       opcion: 1,
-      impresora: this.impresora.value,
+      impresora: impresora.rutaUbicacionImpresora
     }
 
     this.generarBolsaService.getImpresion(request).subscribe({
